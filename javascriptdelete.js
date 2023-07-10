@@ -97,30 +97,36 @@ filter.addEventListener('keyup', filterItems);
 // Add item
 function addItem(e){
   e.preventDefault();
-
   // Get input value
   var newItem = document.getElementById('item').value;
-
   // Create new li element
   var li = document.createElement('li');
-  // Add class
+ 
+  var newItem1 = document.getElementById('item1').value;
+  var li = document.createElement('li');
+
+   // Add class
   li.className = 'list-group-item';
+
   // Add text node with input value
   li.appendChild(document.createTextNode(newItem));
+  li.appendChild(document.createTextNode(newItem1));
 
+  var editBtn = document.createElement('button');
+  editBtn.className = 'btn btn-danger btn-sm float-right delete ';
+  editBtn.appendChild(document.createTextNode('Edit'));
+  li.appendChild(editBtn);
+  // Append li to list
+  itemList.appendChild(li);
+  
   // Create del button element
   var deleteBtn = document.createElement('button');
-
   // Add classes to del button
-  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
-
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete mr-2';
   // Append text node
   deleteBtn.appendChild(document.createTextNode('X'));
-
   // Append button to li
   li.appendChild(deleteBtn);
-
-  // Append li to list
   itemList.appendChild(li);
 }
 
@@ -134,7 +140,6 @@ function removeItem(e){
   }
 }
 
-// Filter Items
 function filterItems(e){
   // convert text to lowercase
   var text = e.target.value.toLowerCase();
@@ -143,10 +148,29 @@ function filterItems(e){
   // Convert to an array
   Array.from(items).forEach(function(item){
     var itemName = item.firstChild.textContent;
-    if(itemName.toLowerCase().indexOf(text) != -1){
+    var itemDesc=item.childNodes[1].textContent;
+    if(itemName.toLowerCase().indexOf(text) != -1 || itemDesc.toLowerCase().indexOf(text)!=-1){
       item.style.display = 'block';
     } else {
       item.style.display = 'none';
     }
   });
+}
+
+const deleteButtons = document.querySelectorAll('.delete');
+
+for (const deleteButton of deleteButtons) {
+  const editButton = document.createElement('button');
+  editButton.addEventListener('click', function() {
+    // Add your code for what should happen when the edit button is clicked here
+  Array.from(items).forEach(function(item){
+    var itemName = item.childNodes[1].textContent;
+    if(itemName.toLowerCase().indexOf(text) != -1){
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+
+  });
+});
 }
