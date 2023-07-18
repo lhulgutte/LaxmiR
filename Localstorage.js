@@ -10,7 +10,7 @@ var userEmail=localStorage.setItem("useremail",email);
 var userName=localStorage.getItem("username",name);
 var userEmail=localStorage.getItem("useremail",email);
 
-var a,b;
+/*var a,b;
 a="xyz";
 b="abc@gmail.com";
 
@@ -19,6 +19,6 @@ if(a==userName && b==userEmail){
 }
 else{
     alert("Unsuccessful");
-}
-}
+}*/
 
+}
