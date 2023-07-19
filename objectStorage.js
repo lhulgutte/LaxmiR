@@ -2,6 +2,16 @@
 let submitBtn = document.getElementById('submit1');
 let form = document.getElementById('form');
 
+let users=[];
+
+if(localStorage.getItem('obj')){
+    //parse to JSON object
+    let usersArray=JSON.parse(localStorage.getItem('obj')) || []
+     console.log(usersArray);
+     console.log(typeof usersArray);
+   
+}
+
 //Form Refresh State
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -17,9 +27,12 @@ submitBtn.addEventListener('click', (e) => {
         email:email.value
     };
 
- //Set Value And LocalStorage
-    localStorage.setItem('obj',JSON.stringify(obj));
-   });
+    users.push(obj);
 
-   //NOTE:Big problem of the app - Everytime you add a new user, the older user gets removed. Why does this happen any ideas. Write the reason in the answer.
-   //Ans:To solve this you have to use an array, stringify it and then store it.
+ //Set Value And LocalStorage
+    localStorage.setItem('obj',JSON.stringify(users));
+   console.log(JSON.stringify(users));
+   alert("Your details are stored in localStorage");
+ 
+
+});
