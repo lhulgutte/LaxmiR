@@ -174,3 +174,16 @@ for (const deleteButton of deleteButtons) {
   });
 });
 }
+
+function test(){
+  var name=document.getElementById("item").value;
+  var email=document.getElementById("item1").value;
+  
+  //storing data
+  var userName=localStorage.setItem("username",name);
+  var userEmail=localStorage.setItem("useremail",email);
+  
+  //retrieving data
+  var userName=localStorage.getItem("username",name);
+  var userEmail=localStorage.getItem("useremail",email);
+}  
